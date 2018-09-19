@@ -27,7 +27,7 @@ def request_page(page_id):
 def read_page(page_id):
   filename = get_filename(page_id)
 
-  print(f"Reading document from file: {filename}")
+  print(f"Reading page from file: {filename}")
   f = open(filename, "rb")
   return f.read()
 
@@ -43,20 +43,20 @@ def page_saved(page_id):
 
 def scrape_page(page_id):
   def select(selector):
-    elements = document.select(selector)
+    elements = page.select(selector)
     print(f"Selected elements: {elements}")
     return elements[0]
 
   def get_contents(selector):
     return select(selector).contents[0]
 
-  document = get_page(page_id)
+  page = get_page(page_id)
 
-  if not document:
+  if not page:
     print("Skipping.")
     return
 
-  document = bs4.BeautifulSoup(document, 'html.parser')
+  page = bs4.BeautifulSoup(page, 'html.parser')
 
   data = {}
   for field, selector in selectors.items():
@@ -66,13 +66,13 @@ def scrape_page(page_id):
   print(data)
 
 def save_page(page_id):
-  document = request_page(page_id)
+  page = request_page(page_id)
 
   filename = get_filename(page_id)
-  print(f"Writing document to file: {filename}")  
+  print(f"Writing page to file: {filename}")  
 
   f = open(filename, "wb")
-  f.write(document)
+  f.write(page)
 
 scrape_page("5114")
 # scrape_page("5113")
