@@ -7,5 +7,5 @@ while [  $COUNTER -lt 500 ]; do
     echo $COUNTER
     curl -H "x-api-key: $API_KEY" -H "content-type: application/json" -d "{ \"pageId\": \"$COUNTER\" }" $API
     let COUNTER=COUNTER+1 
-    sleep 1
+    sleep 60
 done
