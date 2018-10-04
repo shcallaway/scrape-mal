@@ -17,8 +17,6 @@ def request(url):
 
 
 def respond_with(status_code):
-    print(f"Response Status Code: {status_code}")
-
     return {
         "statusCode": status_code
     }
@@ -32,7 +30,7 @@ def handler(event, context):
     try:
         id = json.loads(event["body"])["pageId"]
     except Exception as error:
-        print(f"Error: {error}")
+        print(error)
         return respond_with(400)
 
     url = f"https://myanimelist.net/anime/{id}"
@@ -50,7 +48,7 @@ def handler(event, context):
                 Body=data
             )
         except Exception as error:
-            print(f"Error: {error}")
+            print(error)
             return respond_with(500)
 
         return respond_with(201)
