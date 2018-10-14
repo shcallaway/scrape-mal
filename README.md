@@ -1,7 +1,5 @@
 # scrape_mal
 
-:innocent:
-
 I want your data. uwu
 
 ## Development
@@ -29,7 +27,7 @@ scrape_mal is deployed in production using the following AWS resources:
 
 ### RDS
 
-`insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
+`./lambda/insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
 
 ```
 CREATE TABLE anime (
