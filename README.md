@@ -18,4 +18,9 @@ You will need to configure the AWS CLI or provide the `AWS_ACCESS_KEY_ID` and `A
 
 ## Production
 
-scrape_mal is deployed in production using AWS Lambda (as an HTTP API), S3 (for storing raw HTML), and Postgres on RDS.
+scrape_mal is deployed in production using the following AWS resources:
+
+- Lambda
+- API Gateway
+- S3
+- RDS
