@@ -2,7 +2,6 @@ import os
 import bs4
 import boto3
 import json
-import sys
 
 fields = {
     'title': {
@@ -21,18 +20,7 @@ fields = {
 
 
 def get_page(page_id):
-    try:
-        aws_access_key_id = os.environ["AWS_ACCESS_KEY_ID"]
-        aws_secret_access_key = os.environ["AWS_SECRET_ACCESS_KEY"]
-    except KeyError as error:
-        print(f"Missing AWS credentials. Error: {error}")
-        return None
-
-    client = boto3.client(
-        "s3",
-        aws_access_key_id=aws_access_key_id,
-        aws_secret_access_key=aws_secret_access_key
-    )
+    client = boto3.client("s3")
 
     try:
         bucket = os.environ["BUCKET_NAME"]
@@ -46,7 +34,7 @@ def get_page(page_id):
             Key=f"anime/{page_id}.html"
         )['Body'].read().decode()
     except Exception as error:
-        # print(f"Failed to get object from S3. Error: {error}")
+        print(f"Failed to get object from S3. Error: {error}")
         return None
 
 
@@ -68,31 +56,31 @@ def get_text(element):
 
 
 def get_element(page, selector, index):
-    # print(f"Selector: {selector}")
-    # print(f"Index: {index}")
+    print(f"Selector: {selector}")
+    print(f"Index: {index}")
     elements = page.select(selector)
 
     if len(elements) < 1:
-        # print("Selector didn't match anything.")
+        print("Selector didn't match anything.")
         return None
 
     try:
         element = elements[index]
     except IndexError:
-        # print(f"No element at index {index}.")
+        print(f"No element at index {index}.")
         return None
 
-    # print("Element:")
-    # print(pretty_markup(element))
+    print("Element:")
+    print(pretty_markup(element))
     return element
 
 
 def scrape_page(id):
-    # print(f"Page: {id}")
+    print(f"Page: {id}")
     page = get_page(id)
 
     if not page:
-        # print("Skipping.")
+        print("Skipping.")
         return
 
     page = bs4.BeautifulSoup(page, 'html.parser')
@@ -102,22 +90,37 @@ def scrape_page(id):
     }
 
     for field, characteristics in fields.items():
-        # print(f"Field: {field}")
+        print(f"Field: {field}")
 
         element = get_element(
             page, characteristics['selector'], characteristics['index'])
         text = get_text(element)
-        # print(f"Text: {text}")
+        print(f"Text: {text}")
 
         if text:
             data[field] = text
 
     print(pretty_json(data))
 
+    return data
 
-if __name__ == "__main__":
+
+def handler(event, context):
+    print(f"Event: {event}")
+
+    id = ''
+
     try:
-        scrape_page(sys.argv[1])
-    except IndexError:
-        print("You must provide a page ID.")
-        sys.exit(1)
+        id = json.loads(event["body"])["pageId"]
+    except Exception as error:
+        print(error)
+        return {
+            "statusCode": 400
+        }
+
+    data = scrape_page(id)
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps(data, ensure_ascii=False)
+    }
