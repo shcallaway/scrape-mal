@@ -29,7 +29,7 @@ scrape_mal is deployed in production using the following AWS resources:
 
 `./scripts/create_deployment_packages.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) for each of the Lambdas.
 
-## RDS
+### RDS
 
 `insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
 
