@@ -12,9 +12,7 @@ Create a Python virtual environment:
 make dev && source ./venv/bin/activate
 ```
 
-To exit the virtual environment, run `deactivate`.
-
-You will need to configure the AWS CLI or provide the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in order to execute some scripts.
+You will need to configure the AWS CLI to execute the Lambda scripts locally.
 
 ## Deployment
 
