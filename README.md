@@ -25,16 +25,24 @@ scrape_mal is deployed in production using the following AWS resources:
 - S3
 - RDS
 
-`lambda/insert_anime_record.py` must be deployed using a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) because it requires the psycopg2 package. Fortunately, there is a pre-compiled Lambda-compatible version of psycopg2 available [here](https://github.com/jkehler/awslambda-psycopg2). You can get the relevant code with this:
+### Lambda
+
+`./scripts/create_deployment_packages.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) for each of the Lambdas.
+
+## RDS
+
+`insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
 
 ```
-git clone https://github.com/jkehler/awslambda-psycopg2.git && \
-mv awslambda-psycopg2/psycopg2-3.6 psycopg2 && \
-rm -rf awslambda-psycopg2
+CREATE TABLE anime (
+    mal_id integer NOT NULL,
+    title varchar(120) NOT NULL,
+    alt_title_en varchar(120),
+    alt_title_jp varchar(120)
+);
 ```
 
 ## Todo
 
 - Cloudformation
 - [VPC](https://aws.amazon.com/blogs/aws/new-access-resources-in-a-vpc-from-your-lambda-functions/)
-- Script for `lambda/insert_anime_record.py` deployment
