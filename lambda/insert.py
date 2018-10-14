@@ -27,7 +27,7 @@ def get_pg_connection():
     )
 
 
-def handler(event, context):
+def lambda_handler(event, context):
     print(f"Event: {event}")
 
     data = None

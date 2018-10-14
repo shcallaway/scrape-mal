@@ -22,7 +22,7 @@ def respond_with(status_code):
     }
 
 
-def handler(event, context):
+def lambda_handler(event, context):
     print(f"Event: {event}")
 
     id = ''

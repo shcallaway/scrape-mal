@@ -2,25 +2,22 @@
 Transform: "AWS::Serverless-2016-10-31"
 Description: An AWS Serverless Specification template describing your function.
 Resources:
-  insertAnimeRecord:
+  download:
     Type: "AWS::Serverless::Function"
     Properties:
-      Handler: insert_anime_record.handler
+      Handler: download.lambda_handler
       Runtime: python3.6
       CodeUri: .
       Description: ""
       MemorySize: 128
       Timeout: 30
-      Role: "arn:aws:iam::944713421596:role/LambdaRDSFullAccess"
+      Role: "arn:aws:iam::944713421596:role/LambdaS3FullAccess"
       Events:
         Api1:
           Type: Api
           Properties:
-            Path: /insertAnimeRecord
+            Path: /download
             Method: ANY
       Environment:
         Variables:
-          PG_HOST: XXXX
-          PG_USERNAME: XXXX
-          PG_PASSWORD: XXXX
-          PG_DATABASE: XXXX
+          BUCKET_NAME: XXXX
