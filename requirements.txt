@@ -1,3 +1,4 @@
 bs4
 boto3
 pyquery
+psycopg2
