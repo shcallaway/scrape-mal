@@ -2,3 +2,4 @@ venv
 pages/*
 !pages/.keep
 .vscode/
+*.zip
