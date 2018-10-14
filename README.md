@@ -37,3 +37,4 @@ rm -rf awslambda-psycopg2
 
 - Cloudformation
 - [VPC](https://aws.amazon.com/blogs/aws/new-access-resources-in-a-vpc-from-your-lambda-functions/)
+- Script for `lambda/insert_anime_record.py` deployment
