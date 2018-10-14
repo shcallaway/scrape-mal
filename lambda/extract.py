@@ -19,7 +19,7 @@ fields = {
 }
 
 
-def get_page(page_id):
+def get_html(mal_id):
     client = boto3.client("s3")
 
     try:
@@ -31,7 +31,7 @@ def get_page(page_id):
     try:
         return client.get_object(
             Bucket=bucket,
-            Key=f"anime/{page_id}.html"
+            Key=f"anime/{mal_id}.html"
         )['Body'].read().decode()
     except Exception as error:
         print(f"Failed to get object from S3. Error: {error}")
@@ -46,7 +46,9 @@ def pretty_json(string):
     return json.dumps(string, indent=4, ensure_ascii=False)
 
 
-def get_text(element):
+def get_element_text(page, selector, index):
+    element = get_element(page, selector, index)
+
     if element:
         # Remove any nodes that are elements; We only care about text
         contents = [node for node in element.contents if isinstance(node, str)]
@@ -75,50 +77,46 @@ def get_element(page, selector, index):
     return element
 
 
-def scrape_page(id):
-    print(f"Page: {id}")
-    page = get_page(id)
+def extract(mal_id):
+    print(f"mal_id: {mal_id}")
 
-    if not page:
-        print("Skipping.")
-        return
+    html = get_html(mal_id)
+    html = bs4.BeautifulSoup(html, 'html.parser')
 
-    page = bs4.BeautifulSoup(page, 'html.parser')
-
-    data = {
-        'page': id
-    }
+    data = {'mal_id': mal_id}
 
     for field, characteristics in fields.items():
-        print(f"Field: {field}")
+        print(f"field: {field}")
 
-        element = get_element(
-            page, characteristics['selector'], characteristics['index'])
-        text = get_text(element)
-        print(f"Text: {text}")
+        value = get_element_text(
+            html, characteristics['selector'], characteristics['index'])
 
-        if text:
-            data[field] = text
+        print(f"value: {value}")
 
-    print(pretty_json(data))
+        if value:
+            data[field] = value
 
     return data
 
 
-def handler(event, context):
-    print(f"Event: {event}")
-
-    id = ''
+def lambda_handler(event, context):
+    mal_id = None
 
     try:
-        id = json.loads(event["body"])["pageId"]
+        mal_id = json.loads(event["body"])["mal_id"]
     except Exception as error:
         print(error)
-        return {
-            "statusCode": 400
-        }
+        return {"statusCode": 400}
 
-    data = scrape_page(id)
+    data = None
+
+    try:
+        data = extract(mal_id)
+    except Exception as error:
+        print(error)
+        return {"statusCode": 500}
+
+    print(pretty_json(data))
 
     return {
         "statusCode": 200,

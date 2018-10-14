@@ -2,10 +2,10 @@
 Transform: "AWS::Serverless-2016-10-31"
 Description: An AWS Serverless Specification template describing your function.
 Resources:
-  scrape:
+  extract:
     Type: "AWS::Serverless::Function"
     Properties:
-      Handler: scrape.handler
+      Handler: extract.lambda_handler
       Runtime: python3.6
       CodeUri: .
       Description: ""
@@ -16,7 +16,7 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            Path: /scrape
+            Path: /extract
             Method: ANY
       Environment:
         Variables:
