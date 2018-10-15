@@ -23,6 +23,9 @@ def lambda_handler(event, context):
         headers={'x-api-key': extract_api_key}
     )
 
+    if response.status_code is not 200:
+        return {"statusCode": 504}
+
     data = response.json()
 
     response = requests.post(

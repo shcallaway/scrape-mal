@@ -23,7 +23,7 @@ scrape_mal is deployed in production using the following AWS resources:
 
 ### Lambda
 
-`./scripts/create_deployment_packages.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) for each of the Lambdas.
+`./scripts/create_deployment_package.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) for each of the Lambdas.
 
 ### RDS
 
