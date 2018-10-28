@@ -1,6 +1,6 @@
 # scrape_mal
 
-scrape_mal is made obsolete by various MAL APIs. :frown:
+scrape_mal is made obsolete by various MAL APIs. :(
 
 ## Development
 
