@@ -1,16 +1,24 @@
 # scrape_mal
 
-I want your data. uwu
+scrape_mal is made obsolete by various MAL APIs. :frown:
 
 ## Development
 
-Create a Python virtual environment:
+This project is written in both Python and JavaScript. Python because it is easy to get up-and-running in AWS Lambda, and JavaScript because JS is particularly good at parsing HTML.
+
+To develop the Python parts, create a Python virtual environment:
 
 ```
 make dev && source ./venv/bin/activate
 ```
 
-You will need to configure the AWS CLI to execute the Lambda scripts locally.
+To develop the JavaScript parts, install the Node modules:
+
+```
+npm i
+```
+
+Note: You will need to configure the AWS CLI so that you're authenticated with AWS.
 
 ## Deployment
 

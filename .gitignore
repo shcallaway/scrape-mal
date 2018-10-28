@@ -4,3 +4,4 @@ pages/*
 .vscode/
 *.zip
 deploy
+node_modules
