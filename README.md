@@ -1,15 +1,6 @@
 # scrape_mal
 
-I want your data. uwu
-
-## API
-
-- /download - Save an HTML page to S3.
-- /extract - Extract data from a page that was previously saved to S3.
-- /insert - Insert data into the database.
-- /scrape - Combines the extract and insert functions.
-
-All endpoints use HTTP method POST.
+scrape_mal is an HTTP API for scraping https://myanimelist.net/ pages. If you're just here for the data, you can find the latest Postgres backup [here]().
 
 ## Development
 
@@ -28,6 +19,15 @@ npm i
 ```
 
 Note: You will need to configure the AWS CLI so that you're authenticated with AWS.
+
+### API
+
+- /download - Save an HTML page to S3.
+- /extract - Extract data from a page that was previously saved to S3.
+- /insert - Insert data into the database.
+- /scrape - Combines the extract and insert functions.
+
+All endpoints use HTTP method POST.
 
 ## Deployment
 
