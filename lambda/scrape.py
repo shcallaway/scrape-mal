@@ -12,7 +12,7 @@ def lambda_handler(event, context):
         print(error)
         return {"statusCode": 400}
 
-    url = os.environ["URL"]
+    url = os.environ["API_GATEWAY_URL"]
 
     extract_api_key = os.environ["EXTRACT_API_KEY"]
     insert_api_key = os.environ["INSERT_API_KEY"]
@@ -29,7 +29,7 @@ def lambda_handler(event, context):
     data = response.json()
 
     response = requests.post(
-        f"{url}/default/insertAnimeRecord",
+        f"{url}/default/insert",
         data=json.dumps(data),
         headers={'x-api-key': insert_api_key}
     )
