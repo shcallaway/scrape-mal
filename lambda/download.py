@@ -28,7 +28,7 @@ def lambda_handler(event, context):
     id = ''
 
     try:
-        id = json.loads(event["body"])["pageId"]
+        id = json.loads(event["body"])["mal_id"]
     except Exception as error:
         print(error)
         return respond_with(400)
