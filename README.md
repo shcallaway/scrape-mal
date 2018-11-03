@@ -31,7 +31,7 @@ Note: You will need to configure the AWS CLI so that you're authenticated with A
 
 ## Deployment
 
-scrape_mal is deployed in production using the following AWS Lambda, API Gateway, S3 and RDS.
+scrape_mal is deployed in production using AWS Lambda, API Gateway, S3 and RDS.
 
 ### Lambda
 
