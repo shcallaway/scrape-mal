@@ -63,7 +63,7 @@ const fields = {
   //   genres: ""
 };
 
-exports.handler = async event => {
+exports.lambda_handler = async event => {
   let pageId;
 
   try {

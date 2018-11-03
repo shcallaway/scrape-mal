@@ -6,7 +6,7 @@ Resources:
     Type: "AWS::Serverless::Function"
     Properties:
       Handler: extract.lambda_handler
-      Runtime: python3.6
+      Runtime: nodejs8.10
       CodeUri: .
       Description: ""
       MemorySize: 128
@@ -20,4 +20,4 @@ Resources:
             Method: ANY
       Environment:
         Variables:
-          BUCKET_NAME: XXXX
+          BUCKET_NAME: XXX
