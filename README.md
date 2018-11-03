@@ -4,11 +4,10 @@ I want your data. uwu
 
 ## API
 
-
-* /download - Saven an HTML page to S3.
-* /extract - Extract fields from an HTML page that was previously saved to S3.
-* /insert - Insert fields extracted from an HTML page into the database.
-* /scrape - Combines the extract and insert steps.
+- /download - Saven an HTML page to S3.
+- /extract - Extract fields from an HTML page that was previously saved to S3.
+- /insert - Insert fields extracted from an HTML page into the database.
+- /scrape - Combines the extract and insert steps.
 
 All endpoints use HTTP method POST.
 
@@ -34,10 +33,10 @@ Note: You will need to configure the AWS CLI so that you're authenticated with A
 
 scrape_mal is deployed in production using the following AWS resources:
 
-* Lambda
-* API Gateway
-* S3
-* RDS
+- Lambda
+- API Gateway
+- S3
+- RDS
 
 ### Lambda
 
@@ -50,9 +49,20 @@ scrape_mal is deployed in production using the following AWS resources:
 ```
 CREATE TABLE anime (
     mal_id integer NOT NULL,
-    title varchar(120) NOT NULL,
-    alt_title_en varchar(120),
-    alt_title_jp varchar(120)
+    title text NOT NULL,
+    alt_title_en text,
+    alt_title_jp text,
+    type text,
+    num_episodes integer,
+    status text,
+    aired text,
+    premiered text,
+    broadcast text,
+    source text,
+    duration text,
+    rating text,
+    synopsis text,
+    background text
 );
 ```
 
