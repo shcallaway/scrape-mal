@@ -8,7 +8,7 @@ I want your data. uwu
 * /download - Saven an HTML page to S3.
 * /extract - Extract fields from an HTML page that was previously saved to S3.
 * /insert - Insert fields extracted from an HTML page into the database.
-* /scrape - Combines the download, extract and insert steps.
+* /scrape - Combines the extract and insert steps.
 
 All endpoints use HTTP method POST.
 
