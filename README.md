@@ -4,7 +4,7 @@ I want your data. uwu
 
 ## API
 
-- /download - Saven an HTML page to S3.
+- /download - Save an HTML page to S3.
 - /extract - Extract fields from an HTML page that was previously saved to S3.
 - /insert - Insert fields extracted from an HTML page into the database.
 - /scrape - Combines the extract and insert steps.
@@ -31,12 +31,7 @@ Note: You will need to configure the AWS CLI so that you're authenticated with A
 
 ## Deployment
 
-scrape_mal is deployed in production using the following AWS resources:
-
-- Lambda
-- API Gateway
-- S3
-- RDS
+scrape_mal is deployed in production using the following AWS Lambda, API Gateway, S3 and RDS.
 
 ### Lambda
 
