@@ -5,9 +5,9 @@ I want your data. uwu
 ## API
 
 - /download - Save an HTML page to S3.
-- /extract - Extract fields from an HTML page that was previously saved to S3.
-- /insert - Insert fields extracted from an HTML page into the database.
-- /scrape - Combines the extract and insert steps.
+- /extract - Extract data from a page that was previously saved to S3.
+- /insert - Insert data into the database.
+- /scrape - Combines the extract and insert functions.
 
 All endpoints use HTTP method POST.
 
@@ -21,7 +21,7 @@ To develop the Python parts, create a Python virtual environment:
 make dev && source ./venv/bin/activate
 ```
 
-To develop the JavaScript parts, install the Node modules:
+To develop the JavaScript parts, simply install the Node modules:
 
 ```
 npm i
@@ -35,11 +35,11 @@ scrape_mal is deployed in production using AWS Lambda, API Gateway, S3 and RDS.
 
 ### Lambda
 
-`./scripts/create_deployment_package.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) that will work for all of the Lambdas.
+`scripts/create_deployment_package.sh` will create a [deployment package](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html) that will work for all of the Lambdas.
 
 ### RDS
 
-`./lambda/insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
+`lambda/insert.py` requires a Postgres databse on RDS. You can create the main table with this command:
 
 ```
 CREATE TABLE anime (
