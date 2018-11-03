@@ -1,4 +1,3 @@
-const fs = require("fs");
 const cheerio = require("cheerio");
 const AWS = require("aws-sdk");
 
@@ -68,14 +67,14 @@ exports.handler = async event => {
   let pageId;
 
   try {
-    pageId = event.body.mal_id;
+    pageId = JSON.parse(event.body).mal_id;
   } catch (error) {
     return {
       statusCode: 400
     };
   }
 
-  getPage(pageId).then(
+  return getPage(pageId).then(
     page => {
       const $ = cheerio.load(page);
       const result = {
@@ -110,10 +109,13 @@ String.prototype.sanitize = function() {
 };
 
 function getPage(pageId) {
+
+  // Use this if you are developing locally
   //   const s3 = new AWS.S3({
   //     accessKeyId: process.env.ACCESS_KEY_ID,
   //     secretAccessKey: process.env.SECRET_ACCESS_KEY
   //   });
+
   const s3 = new AWS.S3();
 
   return new Promise((resolve, reject) => {
