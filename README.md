@@ -1,6 +1,16 @@
 # scrape_mal
 
-scrape_mal is made obsolete by various MAL APIs. :(
+I want your data. uwu
+
+## API
+
+
+* /download - Saven an HTML page to S3.
+* /extract - Extract fields from an HTML page that was previously saved to S3.
+* /insert - Insert fields extracted from an HTML page into the database.
+* /scrape - Combines the download, extract and insert steps.
+
+All endpoints use HTTP method POST.
 
 ## Development
 
@@ -24,10 +34,10 @@ Note: You will need to configure the AWS CLI so that you're authenticated with A
 
 scrape_mal is deployed in production using the following AWS resources:
 
-- Lambda
-- API Gateway
-- S3
-- RDS
+* Lambda
+* API Gateway
+* S3
+* RDS
 
 ### Lambda
 
