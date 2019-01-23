@@ -1,6 +1,6 @@
-# scrape_mal
+# Scrape MAL
 
-scrape_mal is an HTTP API for scraping https://myanimelist.net/ pages. If you're just here for the data, you can find the latest Postgres backup [here]().
+Scrape MAL is an HTTP API for scraping [My Anime List](https://myanimelist.net/) pages. 
 
 ## Development
 
@@ -31,7 +31,7 @@ All endpoints use HTTP method POST.
 
 ## Deployment
 
-scrape_mal is deployed in production using AWS Lambda, API Gateway, S3 and RDS.
+SCrape MAL is deployed in production using AWS Lambda, API Gateway, S3 and RDS.
 
 ### Lambda
 
@@ -63,5 +63,5 @@ CREATE TABLE anime (
 
 ## Todo
 
-- Cloudformation
+- Infrastructure as Code (CloudFormation or Terraform)
 - [VPC](https://aws.amazon.com/blogs/aws/new-access-resources-in-a-vpc-from-your-lambda-functions/)
